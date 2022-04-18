@@ -3,14 +3,15 @@ package bd
 import (
 	"context"
 	"log"
-
+	"os"
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 /*MongoCN  */
 var MongoCN = ConectarBD()
-var clientOptions = options.Client().ApplyURI("mongodb+srv://admin:admin@cluster0.ij2em.mongodb.net/twittor?retryWrites=true&w=majority")
+var clientOptions = options.Client().ApplyURI(goDotEnvVariable("MONGO_URI"))
 
 /* ConectarBD conecta con db  */
 func ConectarBD() *mongo.Client {
@@ -36,4 +37,18 @@ func ChequeoConnection() int {
 		return 0
 	}
 	return 1
+}
+
+// use godot package to load/read the .env file and
+// return the value of the key
+func goDotEnvVariable(key string) string {
+
+	// load .env file
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	return os.Getenv(key)
 }
