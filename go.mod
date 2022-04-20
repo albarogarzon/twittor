@@ -6,6 +6,7 @@ go 1.18
 require go.mongodb.org/mongo-driver v1.9.0
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/gorilla/mux v1.8.0
