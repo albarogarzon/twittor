@@ -2,6 +2,7 @@ package bd
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -16,6 +17,7 @@ var clientOptions = options.Client().ApplyURI(goDotEnvVariable("MONGO_URI"))
 
 /* ConectarBD conecta con db  */
 func ConectarBD() *mongo.Client {
+	fmt.Println("Conexion: ",clientOptions.GetURI())
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
 		log.Fatal(err.Error())
