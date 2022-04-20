@@ -9,7 +9,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-var Email string
+var Email string //Variables globales Email y IDUsuario
 
 var IDUsuario string
 
