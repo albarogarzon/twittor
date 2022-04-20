@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"os"
+
 	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -43,12 +44,16 @@ func ChequeoConnection() int {
 // return the value of the key
 func goDotEnvVariable(key string) string {
 
+	if os.Getenv("APP_ENV") == "heroku" {
+		return os.Getenv(key)
+	}
+
 	// load .env file
 	err := godotenv.Load(".env")
 
 	if err != nil {
 		log.Println("Error loading .env file")
 	}
-
 	return os.Getenv(key)
+
 }
